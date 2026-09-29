@@ -6,8 +6,8 @@
 <title>丁志斐 & 王鹤锦的婚礼邀请</title>
 <meta property="og:title" content="丁志斐 & 王鹤锦的婚礼邀请">
 <meta property="og:description" content="2026年11月16日，诚挚邀请您见证我们的幸福">
-<meta property="og:image" content="https://lively-whj-dzf.1920361955-48b.workers.dev/photo1.jpg">
-<meta property="og:url" content="https://lively-whj-dzf.1920361955-48b.workers.dev/">
+<meta property="og:image" content="https://wedding.1920361955-48b.workers.dev//photo1.jpg">
+<meta property="og:url" content="https://wedding.1920361955-48b.workers.dev/">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -112,13 +112,12 @@
      style="margin-bottom:10px; color:#8a0212; text-decoration:none;">河南省登封市</a>
     <div id="map" style="width:100%; height:240px; border-radius:12px; margin-top:10px;"></div>
   </div>
-  <script src="https://api.map.baidu.com/api?v=3.0&ak=1PM8hNrn5RHsrx7BHgEou6dtqvCY0Pbf"></script>
+  <script src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=1PM8hNrn5RHsrx7BHgEou6dtqvCY0Pbf"></script>
   <script>
-    var map = new BMap.Map("map");
-    var point = new BMap.Point(112.908090, 34.373851);
-    map.centerAndZoom(point, 16);
-    var marker = new BMap.Marker(point);
-    map.addOverlay(marker);
+    var map = new BMapGL.Map("map");
+	var point = new BMapGL.Point(112.908090, 34.373851);
+	map.centerAndZoom(point, 16);
+	map.addOverlay(new BMapGL.Marker(point));
     map.enableScrollWheelZoom(false);
   </script>
 
@@ -152,16 +151,5 @@
   </div>
 
 </div>
-
-<script>
-  window.formspree = window.formspree || function () {
-    (formspree.q = formspree.q || []).push(arguments);
-  };
-  formspree('initForm', {
-    formElement: '#rsvp-form',
-    formId: 'YOUR_FORM_ID'
-  });
-</script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
