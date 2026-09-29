@@ -7,13 +7,7 @@ export default {
       const name = formData.get('guestName');
       const count = formData.get('guestCount');
 
-      // 写入 KV，key 用时间戳保证唯一
-      const key = `rsvp_${Date.now()}`;
-      await env.RSVP_KV.put(key, JSON.stringify({
-        name: name,
-        count: count,
-        time: new Date().toISOString()
-      }));
+      await env.RSVP_KV.put(`rsvp_${Date.now()}`, JSON.stringify({ name, count }));
 
       return new Response(JSON.stringify({ ok: true }), {
         headers: { 'Content-Type': 'application/json' }

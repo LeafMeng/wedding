@@ -1,0 +1,11 @@
+name = "wedding"
+main = "worker.js"
+compatibility_date = "2026-07-03"
+
+[assets]
+directory = "."
+binding = "ASSETS"
+
+[[kv_namespaces]]
+binding = "RSVP_KV"
+id = "RSVP_KV"
