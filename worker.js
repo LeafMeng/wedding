@@ -5,9 +5,9 @@ export default {
     if (url.pathname === '/submit' && request.method === 'POST') {
       const formData = await request.formData();
       const name = formData.get('guestName');
-      const count = formData.get('guestCount');
+      const message = formData.get('guestMsg');
 
-      await env.RSVP_KV.put(`rsvp_${Date.now()}`, JSON.stringify({ name, count }));
+      await env.RSVP_KV.put(`rsvp_${Date.now()}`, JSON.stringify({ name, message }));
 
       return new Response(JSON.stringify({ ok: true }), {
         headers: { 'Content-Type': 'application/json' }
