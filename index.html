@@ -6,7 +6,7 @@
 <title>丁志斐 & 王鹤锦的婚礼邀请</title>
 <meta property="og:title" content="丁志斐 & 王鹤锦的婚礼邀请">
 <meta property="og:description" content="2026年11月16日，诚挚邀请您见证我们的幸福">
-<meta property="og:image" content="https://invitation.dingwangwedding.asia/assets/custom/photo1.jpg">
+<meta property="og:image" content="https://invitation.dingwangwedding.asia/assets/custom/photo1.jpg?_v=1">
 <meta property="og:url" content="https://invitation.dingwangwedding.asia/">
 <link rel="icon" href="favicon.ico" sizes="any">
 <style>
@@ -28,7 +28,7 @@
     overflow: hidden;
   }
   .flex-row { display: flex; flex-direction: row;}
-  .body_bg { padding: 20px; background: url(/assets/base/bg.webp); }
+  .body_bg { padding: 20px; background: url(/assets/base/bg.webp); background-size: contain; }
   .top-wrap1 { margin-bottom: 10px; font-size: 18px; }
   .top-en { font-family: Georgia, serif; font-weight: 600; letter-spacing: 2px; color: #272429;  }
   .top-cn { color: #272429; }
@@ -39,17 +39,40 @@
   .photo { width: 100%; border-radius: 8px; margin-bottom: 24px; display: block; object-fit: cover; }
   .text-block { font-size: 14px; color: #787878; text-align: center; line-height: 2; margin-bottom: 28px; letter-spacing: 0.5px; }
   .text-block.dark { color: #2f2f2f; }
+  .part-title { width: 100%; font-size:1.2rem; color:#000000;letter-spacing:0.05rem;line-height: 3rem; text-align: center; }
   .couple { display: flex; justify-content: center; align-items: center; gap: 20px; margin: 30px 0; }
   .couple .name { font-size: 18px; font-weight: 600; color: #2f2f2f; }
   .couple .heart { color: #e08a9e; font-size: 20px; }
+  /* 新人头像 */
+  .couple-avatars, .couple-names { display: flex; justify-content: center; align-items: center; gap: 14px; }
+  .couple-avatars { margin: 8px 0 16px; }
+  .couple-avatars .avatar { width: 108px; height: 108px; border-radius: 50%; object-fit: cover; display: block; }
+  .couple-avatars .heart-img { width: 51px; height: 40px; display: block; }
+  .couple-names { margin-bottom: 28px; }
+  .couple-names .name { width: 108px; text-align: center; font-size: 15px; color: #2f2f2f; letter-spacing: 2px; }
+  .couple-names .gap { width: 51px; }
   .date-section { text-align: center; margin: 36px 0; padding: 24px 0; border-top: 1px solid #f0e6e6; border-bottom: 1px solid #f0e6e6; }
   .date-main { font-size: 20px; font-weight: 600; color: #2f2f2f; margin-bottom: 4px; }
   .date-sub { font-size: 13px; color: #787878; }
+  /* 婚礼日历 */
+  .calendar { max-width: 260px; margin: 22px auto 26px; }
+  .cal-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; }
+  .cal-month { font-family: Georgia, serif; font-weight: 700; font-size: 38px; line-height: 1; color: #a8202f; }
+  .cal-month small { font-size: 17px; font-weight: 400; margin-left: 2px; }
+  .cal-year { font-family: Georgia, serif; font-size: 15px; letter-spacing: 1px; color: #b3a7a7; }
+  .cal-week, .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+  .cal-week { font-size: 13px; color: #b3a7a7; text-align: center; padding-bottom: 6px; border-bottom: 1px solid #e6c6cb; }
+  .cal-grid { margin-top: 12px; row-gap: 6px; }
+  .cal-day { position: relative; display: flex; align-items: center; justify-content: center; height: 28px; font-family: Georgia, serif; font-size: 13px; color: #b3a7a7; }
+  .cal-day span { position: relative; }
+  .cal-heart { position: absolute; width: 30px; height: 30px; }
+  .cal-day.today { color: #a8202f; font-weight: 700; }
   .address { text-align: center; font-size: 15px; color: #2f2f2f; margin: 24px 0; }
   .address .label { display: block; font-size: 13px; color: #b58a95; margin-bottom: 4px; letter-spacing: 2px; }
-  .rsvp { margin: 40px 0 20px; padding: 24px; background: #fdf8f5; border-radius: 12px; }
+  .rsvp { margin: 40px 0 20px; padding: 24px; }
   .rsvp-title { text-align: center; font-size: 15px; font-weight: 600; color: #8a0212; letter-spacing: 2px; margin-bottom: 20px; }
-  .rsvp input, .rsvp textarea { width: 100%; padding: 12px 16px; margin-bottom: 12px; border: 1px solid #e0d0d0; border-radius: 8px; font-size: 14px; background: #fff; outline: none; font-family: inherit; }
+  .rsvp form { width: 90%; margin: 5%; }
+  .rsvp input, .rsvp textarea { width: 100%; padding: 12px 16px; margin-bottom: 12px; border: 1px solid #e0d0d0; border-radius: 8px; font-size: 14px; background: transparent; outline: none; font-family: inherit; }
   .rsvp input:focus, .rsvp textarea:focus { border-color: #e08a9e; }
   .rsvp textarea { min-height: 5rem; resize: vertical; }
   .rsvp button { width: 100%; padding: 14px; background: #840404; color: #fff; border: 1px solid #ca9133; border-radius: 8px; font-size: 15px; letter-spacing: 2px; cursor: pointer; font-family: inherit; }
@@ -65,25 +88,32 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 44px;
-    height: 44px;
+    width: 30px;
+    height: 30px;
+    padding: 1px;
     border-radius: 50%;
     background: rgba(145, 143, 143, 0.26);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 9999;
     cursor: pointer;
     transition: background 0.3s;
   }
   .music-btn img {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
+  }
+  .music-btn.paused::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 2px;
+    height: 26px;
+    background: white;
+  }
+  .music-btn:not(.paused) img {
     animation: rotate 3s linear infinite;
     animation-play-state: running;
-  }
-  .music-btn.paused img {
-    animation-play-state: paused;
   }
   @keyframes rotate {
     from { transform: rotate(0deg); }
@@ -106,11 +136,23 @@
   <div class="body_bg">
     <div class="text-block text-right" style="font-weight:bold;">D&amp;W<br/>想告诉你们一个好消息<br>我们结婚啦！</div>
 
-    <img class="photo" src="assets/custom/photo1.jpg" alt="婚纱照">
+    <img class="photo" src="assets/custom/photo9.jpg" alt="婚纱照">
 
     <img class="photo" src="assets/base/invitationText.png" alt="婚礼邀请函">
+
+    <!-- 新人头像 -->
+    <div class="couple-avatars">
+      <img class="avatar" src="assets/custom/couple-groom.webp" alt="丁志斐">
+      <img class="heart-img" src="assets/base/couple-heart.webp" alt="❤">
+      <img class="avatar" src="assets/custom/couple-bride.webp" alt="王鹤锦">
+    </div>
+    <div class="couple-names">
+      <span class="name">丁志斐</span>
+      <span class="gap"></span>
+      <span class="name">王鹤锦</span>
+    </div>
     <div class="text-block">
-      我度量时间的方式<br>
+      度量时间的方式<br>
       不是三餐四季<br>
       不是昼夜交替<br>
       而是是否和你在一起<br>
@@ -118,21 +160,49 @@
       来抵御漫漫岁月中的默默无闻<br>
       终于在
     </div>
-
-    <img class="photo" src="assets/custom/photo2.jpg" alt="婚纱照">
-
-    <div class="couple">
-      <span class="name">丁志斐</span>
-      <span class="heart">❤</span>
-      <span class="name">王鹤锦</span>
+    <div class="text-block dark" style="margin-top: -10px; margin-bottom: 8px; font-weight: 600;">
+      2026年11月16日
     </div>
-
     <div class="text-block dark">
-      2026年11月16日<br>
       <span style="font-size:13px;color:#787878;">我们决定举行婚礼！</span>
     </div>
-
     <img class="photo" src="assets/custom/photo3.jpg" alt="婚纱照">
+    <img class="photo" src="assets/base/flower.webp" style="width: 68px; margin: 0 auto;" />
+    <div class="text-block">
+      浪漫不止有鲜花和夕阳<br>
+      还有细水长流<br>
+      来日方长
+    </div>
+    <img class="photo" src="assets/custom/photo4.webp" alt="婚纱照">
+    <div style="position: relative; height: 48px;">
+      <img src="assets/base/dream.png" style="width: 104px; position: absolute; top: -56px; right: 0;" />
+    </div>
+    <div class="text-block text-right">
+      /<br>
+      我们说到爱，说到相见<br>
+      仿佛大地给了我们容身之所<br>
+      不断靠近的星群<br>
+      头顶上的流水之声
+    </div>
+    <img class="photo" src="assets/custom/photo5.jpg" alt="婚纱照">
+    <img class="photo" src="assets/custom/photo6.jpg" alt="婚纱照">
+    <div class="text-block">
+      我虽不善言辞<br>
+      但关于爱你我无法掩饰<br>
+      从粗粝的一生中<br>
+      榨尽所有温柔悉数献于你<br>
+      我仍觉不够
+    </div>
+    <div style="display: flex; flex-flow: row wrap; gap: 0.5rem;">
+      <div style="flex: 1;">
+        <img class="photo" src="assets/custom/photo7.jpg" alt="婚纱照"/>
+      </div>
+      <div style="flex: 1;">
+        <img class="photo" src="assets/custom/photo8.jpg" alt="婚纱照" style="margin-top: 12rem;">
+        <img class="photo" src="assets/base/leaf-heart.png" alt="" style="width: 51px; float: right; margin-right: 2rem;">
+      </div>
+    </div>
+
 
     <div class="text-block">
       如今<br>
@@ -140,18 +210,44 @@
       诚挚邀请共同走过许多岁月最重要的亲朋好友<br>
       一同分享爱与喜悦
     </div>
+    <img class="photo" src="assets/base/flower2.png" style="width: 65px; margin: 0 auto;" />
 
     <div class="date-section">
-      <div style="font-size:15px;color:#990505;letter-spacing:3px;margin-bottom:16px;">· 婚礼时间 / TIME ·</div>
+      <div class="part-title">· 婚礼时间 / TIME ·</div>
+      <div class="calendar">
+        <div class="cal-head">
+          <div class="cal-month">11 <small>/ 16</small></div>
+          <div class="cal-year">- 2026 -</div>
+        </div>
+        <div class="cal-week">
+          <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"><span>1</span></div>
+          <div class="cal-day"><span>2</span></div><div class="cal-day"><span>3</span></div><div class="cal-day"><span>4</span></div><div class="cal-day"><span>5</span></div><div class="cal-day"><span>6</span></div><div class="cal-day"><span>7</span></div><div class="cal-day"><span>8</span></div>
+          <div class="cal-day"><span>9</span></div><div class="cal-day"><span>10</span></div><div class="cal-day"><span>11</span></div><div class="cal-day"><span>12</span></div><div class="cal-day"><span>13</span></div><div class="cal-day"><span>14</span></div><div class="cal-day"><span>15</span></div>
+          <div class="cal-day today">
+            <svg class="cal-heart" viewBox="0 0 32 30" fill="none" stroke="#c0414f" stroke-width="1.6" aria-hidden="true">
+              <path d="M16 28.5C16 28.5 1.5 19 1.5 10.2C1.5 5.6 5.2 1.5 9.8 1.5C12.7 1.5 15.1 3.1 16 5.2C16.9 3.1 19.3 1.5 22.2 1.5C26.8 1.5 30.5 5.6 30.5 10.2C30.5 19 16 28.5 16 28.5Z"/>
+            </svg>
+            <span>16</span>
+          </div>
+          <div class="cal-day"><span>17</span></div><div class="cal-day"><span>18</span></div><div class="cal-day"><span>19</span></div><div class="cal-day"><span>20</span></div><div class="cal-day"><span>21</span></div><div class="cal-day"><span>22</span></div>
+          <div class="cal-day"><span>23</span></div><div class="cal-day"><span>24</span></div><div class="cal-day"><span>25</span></div><div class="cal-day"><span>26</span></div><div class="cal-day"><span>27</span></div><div class="cal-day"><span>28</span></div><div class="cal-day"><span>29</span></div>
+          <div class="cal-day"><span>30</span></div>
+        </div>
+      </div>
       <div class="date-main">2026年11月16日 星期一</div>
       <div class="date-sub">农历十月初八 11:00</div>
     </div>
 
     <div class="address">
-      <span class="label">· 婚礼地点 / ADDRESS ·</span>
+      <div class="part-title">· 婚礼地点 / ADDRESS ·</div>
+      <div>
       <a href="http://api.map.baidu.com/marker?location=34.373851,112.908090&title=我的家&content=河南省登封市石道乡苗庄村三组&output=html"
          style="margin-bottom:10px; color:#8a0212; text-decoration:none;">河南省登封市（点击查看地图）</a>
-      <div id="map" style="width:100%; height:240px; border-radius:12px; margin-top:10px;"></div>
+      </div>
+      <div id="map" style="width:80%; height:240px; border-radius:12px; margin:10px 10%;"></div>
     </div>
 
     <script src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=1PM8hNrn5RHsrx7BHgEou6dtqvCY0Pbf"></script>
@@ -162,9 +258,15 @@
       map.addOverlay(new BMapGL.Marker(point));
       map.enableScrollWheelZoom(false);
     </script>
-
+    <div class="text-block">
+      期待爱情最美丽的那刻<br>
+      你我在爱的名义下步入殿堂<br>
+      接受世界最诚挚的祝福<br>
+      SAY&nbsp;YES,这是我们彼此的共鸣
+    </div>
+    <img class="photo" src="assets/base/stars.png" alt="婚礼邀请函" style="width: 55px; margin: 0 auto;">
     <div class="rsvp">
-      <div class="rsvp-title">· 宾客回执 ·</div>
+      <div class="part-title">· 宾客回执 ·</div>
       <div id="rsvp-success" style="display:none; color:#8a0212; text-align:center; padding:10px; font-size:14px;">提交成功，感谢您的参与！</div>
       <div id="rsvp-error" style="display:none; color:#d32f2f; text-align:center; padding:10px; font-size:14px;"></div>
 
@@ -174,6 +276,8 @@
         <button type="submit">提交</button>
       </form>
     </div>
+    <img class="photo" src="assets/base/invitationText2.png" alt="婚礼邀请函" style="width: 80%; margin: 0 auto 3rem;">
+    <img class="photo" src="assets/custom/photo2.jpg" alt="婚纱照">
 
     <div class="ending">
       感谢我的朋友可以看到这里<br>
@@ -187,7 +291,7 @@
     </div>
     <div class="ending">
       <div class="end-mark">· END ·</div>
-      <span class="heart">❤</span>
+      <img class="photo" src="assets/base/xi.png" style="width: 49px; margin: 0 auto;" />
     </div>
   </div>
 </div>
@@ -204,16 +308,37 @@
   var musicBtn = document.getElementById('musicBtn');
   var isPlaying = false;
 
-  musicBtn.addEventListener('click', function () {
-    if (isPlaying) {
-      music.pause();
-      musicBtn.classList.add('paused');
-      isPlaying = false;
-    } else {
-      music.play();
+  function playMusic() {
+    music.play().then(function () {
       musicBtn.classList.remove('paused');
       isPlaying = true;
+    }).catch(function () {});
+  }
+
+  function pauseMusic() {
+    music.pause();
+    musicBtn.classList.add('paused');
+    isPlaying = false;
+  }
+
+  musicBtn.addEventListener('click', function () {
+    if (isPlaying) {
+      pauseMusic();
+    } else {
+      playMusic();
     }
+  });
+
+  // 默认自动播放；若被浏览器策略拦截，则在用户首次交互时补播
+  playMusic();
+  var musicUnlocked = false;
+  function unlockMusic() {
+    if (musicUnlocked) return;
+    musicUnlocked = true;
+    if (music.paused) playMusic();
+  }
+  ['pointerdown', 'mousedown', 'touchstart', 'click', 'keydown'].forEach(function (evt) {
+    document.addEventListener(evt, unlockMusic, { capture: true, passive: true });
   });
 
   // ===== 自动下滑（顺滑版） =====
@@ -236,7 +361,7 @@
 
   ['touchstart', 'mousedown', 'wheel', 'keydown'].forEach(function (evt) {
     document.addEventListener(evt, function (e) {
-	  if (musicBtn.contains(e.target)) return;
+      if (musicBtn.contains(e.target)) return;
       userInteracted = true;
       autoScrollActive = false;
     }, { passive: true });
