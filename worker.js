@@ -7,7 +7,7 @@ export default {
       const name = formData.get('guestName');
       const message = formData.get('guestMsg');
 
-      await env.RSVP_KV.put(`rsvp_${Date.now()}`, JSON.stringify({ name, message }));
+      await env.RSVP_KV.put(`rsvp_${Date.now()}`, "✓ " + name + ": " + message);
 
       return new Response(JSON.stringify({ ok: true }), {
         headers: { 'Content-Type': 'application/json' }

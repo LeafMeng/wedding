@@ -6,8 +6,8 @@
 <title>丁志斐 & 王鹤锦的婚礼邀请</title>
 <meta property="og:title" content="丁志斐 & 王鹤锦的婚礼邀请">
 <meta property="og:description" content="2026年11月16日，诚挚邀请您见证我们的幸福">
-<meta property="og:image" content="https://wedding.1920361955-48b.workers.dev/photo1.jpg">
-<meta property="og:url" content="https://wedding.1920361955-48b.workers.dev/">
+<meta property="og:image" content="https://invitation.dingwangwedding.asia/assets/custom/photo1.jpg">
+<meta property="og:url" content="https://invitation.dingwangwedding.asia/">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -26,10 +26,14 @@
     position: relative;
     overflow: hidden;
   }
-  .top-en { font-family: Georgia, serif; font-size: 14px; letter-spacing: 2px; color: #272429; margin-bottom: 8px; }
-  .top-cn { font-size: 22px; font-weight: 600; color: #272429; margin-bottom: 6px; }
-  .top-names { font-size: 13px; color: #636363; letter-spacing: 1px; margin-bottom: 4px; }
-  .top-date { font-size: 12px; color: #cacaca; margin-bottom: 30px; }
+  .flex-row { display: flex; flex-direction: row;}
+  .body_bg { padding: 20px; background: url(/assets/base/bg.webp); }
+  .top-wrap1 { margin-bottom: 10px; font-size: 22px; }
+  .top-en { font-family: Georgia, serif; font-weight: 600; letter-spacing: 2px; color: #272429;  }
+  .top-cn { color: #272429; }
+  .top-wrap2 { margin-bottom: 30px; font-size: 22px; }
+  .top-names { font-size: 14px; color: #636363; letter-spacing: 1px; line-height: 14px;  }
+  .top-date { font-size: 12px; color: #cacaca; line-height: 14px; }
   .divider { width: 100%; height: 1px; background: #e4e4e4; margin-bottom: 30px; }
   .photo { width: 100%; border-radius: 8px; margin-bottom: 24px; display: block; object-fit: cover; }
   .text-block { font-size: 14px; color: #787878; text-align: center; line-height: 2; margin-bottom: 28px; letter-spacing: 0.5px; }
@@ -53,105 +57,197 @@
   .ending { text-align: center; font-size: 14px; color: #787878; line-height: 2; margin: 40px 0 20px; }
   .ending .heart { color: #e08a9e; font-size: 18px; display: block; margin: 16px 0; }
   .ending .end-mark { color: #990505; font-weight: 600; letter-spacing: 4px; margin-bottom: 12px; }
+  .text-right { text-align: right; }
+
+  /* 音乐按钮 */
+  .music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(145, 143, 143, 0.26);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .music-btn img {
+    width: 24px;
+    height: 24px;
+    animation: rotate 3s linear infinite;
+    animation-play-state: running;
+  }
+  .music-btn.paused img {
+    animation-play-state: paused;
+  }
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 </style>
 </head>
 <body>
 <div class="page">
-
-  <div class="top-en">SAVE THE DATE 丨</div>
-  <div class="top-cn">我们结婚啦！</div>
-  <div class="top-names">丁志斐 &amp; 王鹤锦</div>
-  <div class="top-date">2026-11-16 11:00</div>
+  <div class="flex-row top-wrap1">
+    <div class="top-en">SAVE THE DATE 丨</div>
+    <div class="top-cn">我们结婚啦！</div>
+  </div>
+  <div class="flex-row top-wrap2">
+    <div class="top-names">丁志斐 &amp; 王鹤锦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    <div class="top-date">2026-11-16 11:00</div>
+  </div>
   <div class="divider"></div>
 
-  <div class="text-block">想告诉你们一个好消息<br>我们结婚啦！</div>
+  <div class="body_bg">
+    <div class="text-block text-right" style="font-weight:bold;">D&amp;W<br/>想告诉你们一个好消息<br>我们结婚啦！</div>
 
-  <img class="photo" src="photo1.jpg" alt="婚纱照">
+    <img class="photo" src="assets/custom/photo1.jpg" alt="婚纱照">
 
-  <div class="text-block">
-    我度量时间的方式<br>
-    不是三餐四季<br>
-    不是昼夜交替<br>
-    而是是否和你在一起<br>
-    为了在灿烂的生命中定格一个永恒的瞬间<br>
-    来抵御漫漫岁月中的默默无闻<br>
-    终于在
+    <img class="photo" src="assets/base/invitationText.png" alt="婚礼邀请函">
+    <div class="text-block">
+      我度量时间的方式<br>
+      不是三餐四季<br>
+      不是昼夜交替<br>
+      而是是否和你在一起<br>
+      为了在灿烂的生命中定格一个永恒的瞬间<br>
+      来抵御漫漫岁月中的默默无闻<br>
+      终于在
+    </div>
+
+    <img class="photo" src="assets/custom/photo2.jpg" alt="婚纱照">
+
+    <div class="couple">
+      <span class="name">丁志斐</span>
+      <span class="heart">❤</span>
+      <span class="name">王鹤锦</span>
+    </div>
+
+    <div class="text-block dark">
+      2026年11月16日<br>
+      <span style="font-size:13px;color:#787878;">我们决定举行婚礼！</span>
+    </div>
+
+    <img class="photo" src="assets/custom/photo3.jpg" alt="婚纱照">
+
+    <div class="text-block">
+      如今<br>
+      携同我们的父母<br>
+      诚挚邀请共同走过许多岁月最重要的亲朋好友<br>
+      一同分享爱与喜悦
+    </div>
+
+    <div class="date-section">
+      <div style="font-size:15px;color:#990505;letter-spacing:3px;margin-bottom:16px;">· 婚礼时间 / TIME ·</div>
+      <div class="date-main">2026年11月16日 星期一</div>
+      <div class="date-sub">农历十月初八 11:00</div>
+    </div>
+
+    <div class="address">
+      <span class="label">· 婚礼地点 / ADDRESS ·</span>
+      <a href="http://api.map.baidu.com/marker?location=34.373851,112.908090&title=我的家&content=河南省登封市石道乡苗庄村三组&output=html"
+         style="margin-bottom:10px; color:#8a0212; text-decoration:none;">河南省登封市（点击查看地图）</a>
+      <div id="map" style="width:100%; height:240px; border-radius:12px; margin-top:10px;"></div>
+    </div>
+
+    <script src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=1PM8hNrn5RHsrx7BHgEou6dtqvCY0Pbf"></script>
+    <script>
+      var map = new BMapGL.Map("map");
+      var point = new BMapGL.Point(112.908090, 34.373851);
+      map.centerAndZoom(point, 16);
+      map.addOverlay(new BMapGL.Marker(point));
+      map.enableScrollWheelZoom(false);
+    </script>
+
+    <div class="rsvp">
+      <div class="rsvp-title">· 宾客回执 ·</div>
+      <div id="rsvp-success" style="display:none; color:#8a0212; text-align:center; padding:10px; font-size:14px;">提交成功，感谢您的参与！</div>
+      <div id="rsvp-error" style="display:none; color:#d32f2f; text-align:center; padding:10px; font-size:14px;"></div>
+
+      <form id="rsvp-form">
+        <input type="text" name="guestName" placeholder="您的姓名" required>
+        <textarea name="guestMsg" placeholder="您对新郎新娘的祝福语：新婚快乐！" required></textarea>
+        <button type="submit">提交</button>
+      </form>
+    </div>
+
+    <div class="ending">
+      感谢我的朋友可以看到这里<br>
+      看完我的碎碎念<br>
+      收到这封邀请函的你们<br>
+      都是我们人生中重要的部分<br>
+      如果你有时间<br>
+      请带上最开心的自己来参加我们的婚礼<br>
+      期待我们人生的重要时刻<br>
+      有你们的参与！
+    </div>
+    <div class="ending">
+      <div class="end-mark">· END ·</div>
+      <span class="heart">❤</span>
+    </div>
   </div>
-
-  <img class="photo" src="photo2.jpg" alt="婚纱照">
-
-  <div class="couple">
-    <span class="name">丁志斐</span>
-    <span class="heart">❤</span>
-    <span class="name">王鹤锦</span>
-  </div>
-
-  <div class="text-block dark">
-    2026年11月16日<br>
-    <span style="font-size:13px;color:#787878;">我们决定举行婚礼！</span>
-  </div>
-
-  <img class="photo" src="photo3.jpg" alt="婚纱照">
-
-  <div class="text-block">
-    如今<br>
-    携同我们的父母<br>
-    诚挚邀请共同走过许多岁月最重要的亲朋好友<br>
-    一同分享爱与喜悦
-  </div>
-
-  <div class="date-section">
-    <div style="font-size:15px;color:#990505;letter-spacing:3px;margin-bottom:16px;">· 婚礼时间 / TIME ·</div>
-    <div class="date-main">2026年11月16日 星期一</div>
-    <div class="date-sub">农历十月初八 11:00</div>
-  </div>
-
-  <div class="address">
-    <span class="label">· 婚礼地点 / ADDRESS ·</span>
-    <a href="http://api.map.baidu.com/marker?location=34.373851,112.908090&title=我的家&content=河南省登封市石道乡苗庄村三组&output=html"
-       style="margin-bottom:10px; color:#8a0212; text-decoration:none;">河南省登封市（点击查看地图）</a>
-    <div id="map" style="width:100%; height:240px; border-radius:12px; margin-top:10px;"></div>
-  </div>
-
-  <script src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=1PM8hNrn5RHsrx7BHgEou6dtqvCY0Pbf"></script>
-  <script>
-    var map = new BMapGL.Map("map");
-    var point = new BMapGL.Point(112.908090, 34.373851);
-    map.centerAndZoom(point, 16);
-    map.addOverlay(new BMapGL.Marker(point));
-    map.enableScrollWheelZoom(false);
-  </script>
-
-  <div class="rsvp">
-    <div class="rsvp-title">· 宾客回执 ·</div>
-    <div id="rsvp-success" style="display:none; color:#8a0212; text-align:center; padding:10px; font-size:14px;">提交成功，感谢您的参与！</div>
-    <div id="rsvp-error" style="display:none; color:#d32f2f; text-align:center; padding:10px; font-size:14px;"></div>
-
-    <form id="rsvp-form">
-      <input type="text" name="guestName" placeholder="您的姓名" required>
-      <textarea name="guestMsg" placeholder="您对新郎新娘的祝福语：新婚快乐！" required></textarea>
-      <button type="submit">提交</button>
-    </form>
-  </div>
-
-  <div class="ending">
-    感谢我的朋友可以看到这里<br>
-    看完我的碎碎念<br>
-    收到这封邀请函的你们<br>
-    都是我们人生中重要的部分<br>
-    如果你有时间<br>
-    请带上最开心的自己来参加我们的婚礼<br>
-    期待我们人生的重要时刻<br>
-    有你们的参与！
-  </div>
-  <div class="ending">
-    <div class="end-mark">· END ·</div>
-    <span class="heart">❤</span>
-  </div>
-
 </div>
 
+<!-- 悬浮音乐按钮 -->
+<div class="music-btn paused" id="musicBtn">
+  <img src="assets/base/audio.png" alt="music">
+</div>
+<audio src="assets/base/bg.mp3" id="music" loop></audio>
+
 <script>
+  // ===== 音乐控制 =====
+  var music = document.getElementById('music');
+  var musicBtn = document.getElementById('musicBtn');
+  var isPlaying = false;
+
+  musicBtn.addEventListener('click', function () {
+    if (isPlaying) {
+      music.pause();
+      musicBtn.classList.add('paused');
+      isPlaying = false;
+    } else {
+      music.play();
+      musicBtn.classList.remove('paused');
+      isPlaying = true;
+    }
+  });
+
+  // ===== 自动下滑（顺滑版） =====
+  var autoScrollActive = true;
+  var userInteracted = false;
+  var scrollSpeed = 1.2; // 每帧滑动的像素数，调大就更快
+
+  function autoScroll() {
+    if (!autoScrollActive || userInteracted) return;
+
+    var totalHeight = document.body.scrollHeight - window.innerHeight;
+    if (window.scrollY >= totalHeight - 2) {
+      autoScrollActive = false;
+      return;
+    }
+
+    window.scrollBy(0, scrollSpeed);
+    requestAnimationFrame(autoScroll);
+  }
+
+  ['touchstart', 'mousedown', 'wheel', 'keydown'].forEach(function (evt) {
+    document.addEventListener(evt, function (e) {
+	  if (musicBtn.contains(e.target)) return;
+      userInteracted = true;
+      autoScrollActive = false;
+    }, { passive: true });
+  });
+
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      requestAnimationFrame(autoScroll);
+    }, 1500);
+  });
+
+  // ===== 回执表单 =====
   document.getElementById('rsvp-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
