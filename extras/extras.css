@@ -211,12 +211,8 @@ li b { color: #2f2f2f; font-weight: 600; }
 
 .footer a {
   display: inline-block;
-  padding: 11px 30px;
-  border: 1px solid #ca9133;
-  border-radius: 8px;
-  background: #840404;
-  color: #fff;
-  font-size: 14px;
-  letter-spacing: 2px;
+  font-size: 12px;
+  color: #b3a7a7;
+  letter-spacing: 1px;
   text-decoration: none;
 }
