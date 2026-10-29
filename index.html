@@ -69,6 +69,13 @@
   .cal-day.today { color: #a8202f; font-weight: 700; }
   .address { text-align: center; font-size: 15px; color: #2f2f2f; margin: 24px 0; }
   .address .label { display: block; font-size: 13px; color: #b58a95; margin-bottom: 4px; letter-spacing: 2px; }
+  /* 地图切换（简洁文字版） */
+  .map-tabs { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 2px; font-size: 12px; }
+  .map-tab { color: #b3a7a7; cursor: pointer; user-select: none; }
+  .map-tab.active { color: #2f2f2f; cursor: default; pointer-events: none; }
+  .map-sep { color: #e0d0d0; }
+  .map-view-link { color: #8a0212; text-decoration: none; }
+  .map-canvas { width: 80%; height: 240px; border-radius: 12px; margin: 10px 10%; }
   .rsvp { margin: 40px 0 20px; padding: 24px; }
   .rsvp-title { text-align: center; font-size: 15px; font-weight: 600; color: #8a0212; letter-spacing: 2px; margin-bottom: 20px; }
   .rsvp form { width: 90%; margin: 5%; }
@@ -81,6 +88,12 @@
   .ending { text-align: center; font-size: 14px; color: #787878; line-height: 2; margin: 40px 0 20px; }
   .ending .heart { color: #e08a9e; font-size: 18px; display: block; margin: 16px 0; }
   .ending .end-mark { color: #990505; font-weight: 600; letter-spacing: 4px; margin-bottom: 12px; }
+  /* 番外 */
+  .reading { margin: 72px 0 40px; text-align: left; }
+  .reading .part-title { text-align: left; font-size: 15px; line-height: 1.6; padding-bottom: 10px; border-bottom: 1px solid #f0e6e6; }
+  .read-list { margin-top: 14px; }
+  .read-item { display: block; font-size: 13px; color: #5b83b7; text-decoration: none; letter-spacing: 1px; line-height: 2.4; }
+  .read-item:active { opacity: 0.7; }
   .text-right { text-align: right; }
 
   /* 音乐按钮 */
@@ -242,20 +255,99 @@
 
     <div class="address">
       <div class="part-title">· 婚礼地点 / ADDRESS ·</div>
-      <div>
-      <a href="http://api.map.baidu.com/marker?location=34.373851,112.908090&title=我的家&content=河南省登封市石道乡苗庄村三组&output=html"
-         style="margin-bottom:10px; color:#8a0212; text-decoration:none;">河南省登封市（点击查看地图）</a>
+      <div style="margin-bottom:6px;">河南省登封市</div>
+      <div class="map-tabs">
+        <span class="map-tab active" data-map="baidu">百度地图</span>
+        <span class="map-sep">|</span>
+        <span class="map-tab" data-map="amap">高德地图</span>
+        <span class="map-sep">|</span>
+        <a id="mapLink" class="map-view-link" href="http://api.map.baidu.com/marker?location=34.373851,112.908090&title=我的家&content=河南省登封市石道乡苗庄村三组&output=html">点击查看地图</a>
       </div>
-      <div id="map" style="width:80%; height:240px; border-radius:12px; margin:10px 10%;"></div>
+      <div id="bmap" class="map-canvas"></div>
+      <div id="amap" class="map-canvas" style="display:none;"></div>
     </div>
 
     <script src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=1PM8hNrn5RHsrx7BHgEou6dtqvCY0Pbf"></script>
     <script>
-      var map = new BMapGL.Map("map");
-      var point = new BMapGL.Point(112.908090, 34.373851);
-      map.centerAndZoom(point, 16);
-      map.addOverlay(new BMapGL.Marker(point));
-      map.enableScrollWheelZoom(false);
+      // ===== 地图：百度 / 高德 双 Tab 切换 =====
+      // 原始坐标为百度 BD-09（经度, 纬度）
+      var MAP_LNG = 112.908090;
+      var MAP_LAT = 34.373851;
+      var MAP_ADDR = '河南省登封市石道乡苗庄村三组';
+
+      // 高德开放平台 Key（Web端 JS API），申请：https://console.amap.com/dev/key/app
+      var AMAP_KEY = 'd4ea132ab701a7e9a23f96ef0ee2934e';
+      // 若 Key 绑定了安全密钥（2021-12 后申请的默认绑定），在此填入
+      var AMAP_SECURITY_CODE = '4b864491a1dd4578704e31510c44a407';
+
+      // BD-09 转 GCJ-02（高德坐标系）
+      function bdToGcj(bdLng, bdLat) {
+        var xPI = 3.14159265358979324 * 3000.0 / 180.0;
+        var x = bdLng - 0.0065, y = bdLat - 0.006;
+        var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * xPI);
+        var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * xPI);
+        return [z * Math.cos(theta), z * Math.sin(theta)];
+      }
+      var GCJ = bdToGcj(MAP_LNG, MAP_LAT);
+
+      var BAIDU_LINK = 'http://api.map.baidu.com/marker?location=' + MAP_LAT + ',' + MAP_LNG + '&title=我的家&content=' + encodeURIComponent(MAP_ADDR) + '&output=html';
+      var AMAP_LINK = 'https://uri.amap.com/marker?position=' + GCJ[0].toFixed(6) + ',' + GCJ[1].toFixed(6) + '&name=' + encodeURIComponent(MAP_ADDR) + '&coordinate=gaode&callnative=1';
+
+      var mapLink = document.getElementById('mapLink');
+      var mapTabs = document.querySelectorAll('.map-tab');
+      var mapInited = { baidu: false, amap: false };
+
+      function amapHint(text) {
+        document.getElementById('amap').innerHTML =
+          '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#fdf8f5;color:#b3a7a7;font-size:13px;">' + text + '</div>';
+      }
+
+      function loadAmapScript(cb) {
+        if (window.AMap) return cb();
+        if (!AMAP_KEY) { amapHint('高德地图 Key 未配置'); return; }
+        if (AMAP_SECURITY_CODE) window._AMapSecurityConfig = { securityJsCode: AMAP_SECURITY_CODE };
+        var s = document.createElement('script');
+        s.src = 'https://webapi.amap.com/maps?v=2.0&key=' + AMAP_KEY;
+        s.onload = cb;
+        s.onerror = function () { amapHint('高德地图加载失败'); };
+        document.head.appendChild(s);
+      }
+
+      function initBaidu() {
+        if (mapInited.baidu || !window.BMapGL) return;
+        mapInited.baidu = true;
+        var bmap = new BMapGL.Map('bmap');
+        var point = new BMapGL.Point(MAP_LNG, MAP_LAT);
+        bmap.centerAndZoom(point, 16);
+        bmap.addOverlay(new BMapGL.Marker(point));
+        bmap.enableScrollWheelZoom(false);
+      }
+
+      function initAmap() {
+        if (mapInited.amap) return;
+        loadAmapScript(function () {
+          mapInited.amap = true;
+          var amap = new AMap.Map('amap', { zoom: 16, center: GCJ, viewMode: '2D' });
+          amap.add(new AMap.Marker({ position: GCJ }));
+        });
+      }
+
+      function switchMap(type) {
+        mapTabs.forEach(function (tab) {
+          tab.classList.toggle('active', tab.dataset.map === type);
+        });
+        document.getElementById('bmap').style.display = type === 'baidu' ? '' : 'none';
+        document.getElementById('amap').style.display = type === 'amap' ? '' : 'none';
+        mapLink.href = type === 'baidu' ? BAIDU_LINK : AMAP_LINK;
+        if (type === 'baidu') initBaidu();
+        else initAmap();
+      }
+
+      mapTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () { switchMap(tab.dataset.map); });
+      });
+
+      initBaidu(); // 默认展示百度地图
     </script>
     <div class="text-block">
       期待爱情最美丽的那刻<br>
@@ -291,6 +383,20 @@
     <div class="ending">
       <div class="end-mark">· END ·</div>
       <img class="photo" src="assets/base/xi.png" style="width: 49px; margin: 0 auto;" />
+    </div>
+
+    <!-- 番外 -->
+    <div class="reading">
+      <div class="part-title">番外</div>
+      <div class="read-list">
+        <a class="read-item" href="extras/dengfeng.html">提前去登封吧？</a>
+        <a class="read-item" href="extras/arrival.html">新郎在家吗？我到郑州了😭</a>
+        <a class="read-item" href="extras/engagement.html">啥时候瞒着我把婚定了</a>
+        <a class="read-item" href="extras/marriage.html">他俩领证了吗</a>
+        <a class="read-item" href="extras/gossip.html">这瓜吧，有点没吃好</a>
+        <a class="read-item" href="extras/photos.html">什么？想看结婚照？</a>
+        <a class="read-item" href="extras/no-tips.html">它怎么没有打赏</a>
+      </div>
     </div>
   </div>
 </div>
